@@ -27,6 +27,7 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".NewTaskActivity" />
         <activity android:name=".PacientDailyAgenda" />
+        <activity android:name=".TaskActivity"/>
     </application>
 
 </manifest>

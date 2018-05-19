@@ -37,7 +37,7 @@ class LoginActivity : AppCompatActivity() {
                     .addOnCompleteListener(this, { task ->
                         if (task.isSuccessful) {
                             snack.dismiss()
-                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                            val intent = Intent(this@LoginActivity, TaskMedicationActivity::class.java)
                             intent.flags = FLAG_ACTIVITY_NO_HISTORY
                             startActivity(intent)
                             finish()
