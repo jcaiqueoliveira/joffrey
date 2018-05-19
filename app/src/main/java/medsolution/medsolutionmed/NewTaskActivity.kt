@@ -70,7 +70,7 @@ class NewTaskActivity : AppCompatActivity() {
             ) {
                 holder.itemView.task.text = model.name
                 holder.itemView.root3.setOnClickListener {
-                    if (model.name.toLowerCase() == "medicamento") {
+                    if (model.name.toLowerCase() == "medicação") {
                         val i = Intent(this@NewTaskActivity, TaskMedicationActivity::class.java)
                         i.putExtra("STRING_I_NEED", model.name)
                         i.putExtra("user_id", idClient)
