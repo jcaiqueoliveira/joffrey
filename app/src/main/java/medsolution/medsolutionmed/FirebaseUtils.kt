@@ -17,4 +17,7 @@ object FirebaseUtils {
     var query = FirebaseDatabase.getInstance()
         .reference
         .child("pacient_list")
+
+
+    val query_task = FirebaseDatabase.getInstance().reference.child("\"tarefa\"")
 }

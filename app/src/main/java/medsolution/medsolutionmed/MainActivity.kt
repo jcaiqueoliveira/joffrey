@@ -28,13 +28,15 @@ class MainActivity : AppCompatActivity() {
             .build()
         setupRv(options)
 
-
-
-        //var database = FirebaseDatabase.getInstance().getReference().child("chave").addValueEventListener()
-
 //        for (i in 1..10) {
-//            val pacient= Pacient("Paciente $i", "Leito $i","febre")
-//            FirebaseUtils.pacient.child(FirebaseUtils.pacient.push().key).setValue(pacient)
+//            val key = FirebaseUtils.pacient.push().key
+//            Pacient1().apply {
+//                name = "Paciente $i"
+//                bed = "Leito $i"
+//                diagnost = "febre"
+//                id = key
+//                FirebaseUtils.pacient.child(key).setValue(this)
+//            }
 //        }
     }
 
@@ -51,12 +53,22 @@ class MainActivity : AppCompatActivity() {
 
         val adapter = object : FirebaseRecyclerAdapter<Pacient1, ViewHolder>(options) {
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-                val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.lista_pacientes_celula, parent, false)
-                return ViewHolder(view)
+                if (viewType == 0) {
+                    val view = LayoutInflater.from(parent.context)
+                        .inflate(R.layout.item_header, parent, false)
+                    return ViewHolder(view)
+                } else {
+                    val view = LayoutInflater.from(parent.context)
+                        .inflate(R.layout.lista_pacientes_celula, parent, false)
+                    return ViewHolder(view)
+                }
             }
 
-             override fun onBindViewHolder(
+            override fun getItemViewType(position: Int): Int {
+                return if (position == 0) 0 else 1
+            }
+
+            override fun onBindViewHolder(
                 holder: ViewHolder,
                 position: Int,
                 model: Pacient1
@@ -64,6 +76,7 @@ class MainActivity : AppCompatActivity() {
                 holder.itemView.image_paciente.letter = model.name
                 holder.itemView.namePacient.text = model.name
                 holder.itemView.leito.text = model.bed
+                holder.itemView.diagnostic.text = model.diagnost
 
                 if (position.rem(2) == 0) {
                     holder.itemView.image_paciente.shapeColor =
@@ -71,6 +84,10 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     holder.itemView.image_paciente.shapeColor =
                         holder.itemView.context.resources.getColor(android.R.color.black)
+                }
+
+                holder.itemView.setOnClickListener {
+
                 }
             }
         }
