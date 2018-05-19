@@ -12,7 +12,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_history.*
-import kotlinx.android.synthetic.main.item_list_schedule.view.*
+import kotlinx.android.synthetic.main.item_list_history.view.*
 import medsolution.medsolutionmed.model.Pacient1
 import medsolution.medsolutionmed.model.SchedulePacient
 
@@ -64,7 +64,7 @@ class HistoryActivity : AppCompatActivity() {
         val adapter = object : FirebaseRecyclerAdapter<SchedulePacient, ViewHolder>(options) {
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
                 val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_list_schedule, parent, false)
+                    .inflate(R.layout.item_list_history, parent, false)
                 return ViewHolder(view)
             }
 
