@@ -11,49 +11,32 @@ import android.view.ViewGroup
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.activity_pacient_daily_agenda.*
+import kotlinx.android.synthetic.main.activity_history.*
 import kotlinx.android.synthetic.main.item_list_schedule.view.*
 import medsolution.medsolutionmed.model.Pacient1
 import medsolution.medsolutionmed.model.SchedulePacient
 
-class PacientDailyAgenda : AppCompatActivity() {
+class HistoryActivity : AppCompatActivity() {
 
     lateinit var idClient: String
 
     companion object {
-        val key = "PACIENT"
+        val key = "HISTORY"
         fun startActivity(context: Context, pacient: Pacient1): Intent {
-            val i = Intent(context, PacientDailyAgenda::class.java)
+            val i = Intent(context, HistoryActivity::class.java)
             return i.putExtra(key, pacient)
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_pacient_daily_agenda)
-        setSupportActionBar(toolbarDaily)
-        supportActionBar?.title = "Paciente"
+        setContentView(R.layout.activity_history)
+        setSupportActionBar(toolbar)
+        supportActionBar?.title = "Histórico"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        init { pacient ->
-            idClient = pacient.id
-            imgLetter.letter = pacient.name
-            namePacient1.text = pacient.name
-            bed.text = pacient.bed
-            diagnostic.text = pacient.diagnost
-            gender.text = pacient.gender
-            date.text = pacient.date
-            // toFeedASection()
+        init {
+            idClient = it.id
             setupRv(options())
-
-            historicSchedule.setOnClickListener { _ ->
-                startActivity(HistoryActivity.startActivity(this, pacient))
-            }
-
-            newTask.setOnClickListener {
-                startActivity(Intent(this@PacientDailyAgenda, NewTaskActivity::class.java))
-                //  finish()
-            }
         }
     }
 
@@ -68,28 +51,9 @@ class PacientDailyAgenda : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    fun init(func: (pacient: Pacient1) -> Unit) {
-        val pacient = intent.getSerializableExtra(key) as Pacient1
-        func.invoke(pacient)
-    }
-
-    fun toFeedASection() {
-
-        for (i in 1..3) {
-            val id = FirebaseUtils.pacient_schedule.push().key
-            SchedulePacient().apply {
-                time = if (i <= 2) "Manhã" else "Tarde"
-                ocurrenceType = if (i == 3) "Medicamento" else "Atendimento"
-                idSchedule = id
-                action = if (i == 1) "Coleta" else if (i == 2) "Tomografia" else "Morfina"
-                FirebaseUtils.pacient_schedule.child(idClient).child(id).setValue(this)
-            }
-        }
-    }
-
     fun options() = FirebaseRecyclerOptions.Builder<SchedulePacient>()
         .setQuery(
-            FirebaseDatabase.getInstance().reference.child("schedule_pacient").child(
+            FirebaseDatabase.getInstance().reference.child("pacient_time_line").child(
                 idClient
             ), SchedulePacient::class.java
         )
@@ -112,23 +76,18 @@ class PacientDailyAgenda : AppCompatActivity() {
                 holder.itemView.ocurrenceType.text = model.ocurrenceType
                 holder.itemView.action.text = model.action
                 holder.itemView.timeValue.text = model.time
-                holder.itemView.rootL.setOnClickListener {
-                    FirebaseDatabase.getInstance().reference.child("schedule_pacient")
-                        .child(idClient).child(model.idSchedule).setValue(null)
-                    moveScheduleToPacientHistory(model)
-                }
+                holder.itemView.radio.isChecked = true
             }
         }
         adapter.startListening()
 
-        schedule.layoutManager = LinearLayoutManager(this)
-        schedule.setHasFixedSize(true)
-        schedule.adapter = adapter
+        historyRecyclerView.layoutManager = LinearLayoutManager(this)
+        historyRecyclerView.setHasFixedSize(true)
+        historyRecyclerView.adapter = adapter
     }
 
-    fun moveScheduleToPacientHistory(schedule: SchedulePacient) {
-
-        FirebaseUtils.paciente_time_line.child(idClient).child(schedule.idSchedule)
-            .setValue(schedule)
+    fun init(func: (pacient: Pacient1) -> Unit) {
+        val pacient = intent.getSerializableExtra(HistoryActivity.key) as Pacient1
+        func.invoke(pacient)
     }
 }
