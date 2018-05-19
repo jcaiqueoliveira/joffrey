@@ -22,7 +22,7 @@ object FirebaseUtils {
 
     val pacient_schedule = database.getReference("schedule_pacient")
 
-    val query_schedule = FirebaseDatabase.getInstance().reference.child("\"schedule_pacient\"")
+    val query_schedule = FirebaseDatabase.getInstance().reference.child("schedule_pacient")
 
     val paciente_time_line = FirebaseDatabase.getInstance().reference.child("pacient_time_line")
 
