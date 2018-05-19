@@ -23,7 +23,7 @@ class SplashActivity : AppCompatActivity() {
         /* quando current user é nulo estamos deslogados */
         val mAuth = FirebaseAuth.getInstance()
         if (mAuth.currentUser == null) {
-            startActivity(Intent(this, TaskActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
         } else {
             startActivity(Intent(this, MainActivity::class.java))
         }

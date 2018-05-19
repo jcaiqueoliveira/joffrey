@@ -20,9 +20,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lista_pacientes)
-        supportActionBar?.title = FirebaseUtils.userName
-
-        //FirebaseUtils.profile.addListenerForSingleValueEvent(name())
+        setSupportActionBar(toolbar)
+        supportActionBar?.title = "MedSolut"
 
         val options = FirebaseRecyclerOptions.Builder<Pacient1>()
             .setQuery(FirebaseUtils.query, Pacient1::class.java)

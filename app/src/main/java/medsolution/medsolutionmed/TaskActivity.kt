@@ -1,23 +1,16 @@
 package medsolution.medsolutionmed
 
 import android.app.DatePickerDialog
-import android.content.DialogInterface
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.TextInputEditText
-import android.support.design.widget.TextInputLayout
-import android.support.v7.widget.AppCompatSpinner
-import android.view.Menu
-import android.view.MotionEvent
+import android.support.v7.app.AppCompatActivity
+import android.view.MenuItem
 import android.view.View
-import android.widget.*
+import android.widget.ArrayAdapter
+import android.widget.DatePicker
 import kotlinx.android.synthetic.main.activity_task.*
 import java.text.SimpleDateFormat
 import java.util.*
-import android.view.View.OnFocusChangeListener
-
-
-
 
 class TaskActivity : AppCompatActivity() {
 
@@ -29,29 +22,33 @@ class TaskActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_task)
-
-        val toolbar_task = toolbar_task
-
         setSupportActionBar(toolbar_task)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Nova Tarefa"
 
         this.textview_date = this.text_data_procedimento
 
+        val arraySpinnerTurno = arrayOf("Manhã", "Tarde", "Madrugada")
 
-        val arraySpinnerTurno = arrayOf("Manhã","Tarde","Madrugada")
+        val arraySpinnerSetorResponsavel = arrayOf("Enfermagem", "Fisioterapia", "Psicologia")
 
-        val arraySpinnerSetorResponsavel = arrayOf("Enfermagem","Fisioterapia","Psicologia")
+        val adapterTurno = ArrayAdapter(
+            this,
+            android.R.layout.simple_dropdown_item_1line, arraySpinnerTurno
+        )
 
-        val  adapterTurno= ArrayAdapter(this,
-                android.R.layout.simple_dropdown_item_1line, arraySpinnerTurno)
-
-        val adapterSetorResponsavel =ArrayAdapter(this,
-                android.R.layout.simple_dropdown_item_1line
-                , arraySpinnerSetorResponsavel)
+        val adapterSetorResponsavel = ArrayAdapter(
+            this,
+            android.R.layout.simple_dropdown_item_1line
+            , arraySpinnerSetorResponsavel
+        )
 
         // create an OnDateSetListener
         val dateSetListener = object : DatePickerDialog.OnDateSetListener {
-            override fun onDateSet(view: DatePicker, year: Int, monthOfYear: Int,
-                                   dayOfMonth: Int) {
+            override fun onDateSet(
+                view: DatePicker, year: Int, monthOfYear: Int,
+                dayOfMonth: Int
+            ) {
                 cal.set(Calendar.YEAR, year)
                 cal.set(Calendar.MONTH, monthOfYear)
                 cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
@@ -63,26 +60,24 @@ class TaskActivity : AppCompatActivity() {
 
         }
 
-
         // when you click on the button, show DatePickerDialog that is set with OnDateSetListener
-       textview_date!!.setOnClickListener(object : View.OnClickListener {
-           override fun onClick(view: View) {
-               DatePickerDialog(this@TaskActivity,
-                       dateSetListener,
-                       // set DatePickerDialog to point to today's date when it loads up
-                       cal.get(Calendar.YEAR),
-                       cal.get(Calendar.MONTH),
-                       cal.get(Calendar.DAY_OF_MONTH)).show()
-
-           }
-       })
+        textview_date!!.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(view: View) {
+                DatePickerDialog(
+                    this@TaskActivity,
+                    dateSetListener,
+                    // set DatePickerDialog to point to today's date when it loads up
+                    cal.get(Calendar.YEAR),
+                    cal.get(Calendar.MONTH),
+                    cal.get(Calendar.DAY_OF_MONTH)
+                ).show()
+            }
+        })
 
         this.spinner_turno!!.adapter = adapterTurno
 
         this.spinner_setor_responsavel!!.adapter = adapterSetorResponsavel
-
     }
-
 
     private fun updateDateInView() {
         val myFormat = "dd/MM/yyyy" // mention the format you need
@@ -90,10 +85,14 @@ class TaskActivity : AppCompatActivity() {
         textview_date!!.setText(sdf.format(cal.getTime()))
     }
 
-
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        //Salvar a tarefa.
-        return super.onCreateOptionsMenu(menu)
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                // Respond to the action bar's Up/Home button
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

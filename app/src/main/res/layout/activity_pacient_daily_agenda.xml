@@ -4,14 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="12dp"
     android:orientation="vertical"
     tools:context=".PacientDailyAgenda">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarDaily"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="@android:color/darker_gray" />
 
     <com.github.ivbaranov.mli.MaterialLetterIcon
         android:id="@+id/imgLetter"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:layout_below="@+id/toolbarDaily"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
         app:mli_initials="true"
         app:mli_initials_number="1"
         app:mli_letter_color="@android:color/white"
@@ -25,7 +36,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
+        android:layout_marginEnd="12dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="?attr/actionBarSize"
         android:layout_toEndOf="@+id/imgLetter"
         android:textSize="26sp"
         android:textStyle="bold" />
@@ -99,7 +112,8 @@
         android:layout_width="match_parent"
         android:layout_height="440dp"
         android:layout_above="@+id/newTask"
-
+        android:layout_margin="12dp"
+        android:padding="8dp"
         app:cardElevation="8dp">
 
         <RelativeLayout

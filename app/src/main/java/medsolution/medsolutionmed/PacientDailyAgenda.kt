@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.ViewGroup
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
@@ -30,6 +31,10 @@ class PacientDailyAgenda : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pacient_daily_agenda)
+        setSupportActionBar(toolbarDaily)
+        supportActionBar?.title = "Paciente"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         init {
             idClient = it.id
             imgLetter.letter = it.name
@@ -44,8 +49,19 @@ class PacientDailyAgenda : AppCompatActivity() {
 
         newTask.setOnClickListener {
             startActivity(Intent(this@PacientDailyAgenda, NewTaskActivity::class.java))
-          //  finish()
+            //  finish()
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                // Respond to the action bar's Up/Home button
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     fun init(func: (pacient: Pacient1) -> Unit) {
