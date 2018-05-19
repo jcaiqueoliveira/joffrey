@@ -59,7 +59,7 @@ class NewTaskActivity : AppCompatActivity() {
             ) {
                 holder.itemView.task.text = model.name
                 holder.itemView.root3.setOnClickListener {
-                    if (model.name.toLowerCase() == "medicamento") {
+                    if (model.name.toLowerCase() == "medicamento" || model.name.toLowerCase() == "medicação") {
                         val i = Intent(this@NewTaskActivity, TaskActivity::class.java)
                         val strName: String? = null
                         i.putExtra("STRING_I_NEED",model.name)
