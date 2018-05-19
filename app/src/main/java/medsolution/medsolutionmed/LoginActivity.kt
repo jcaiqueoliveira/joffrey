@@ -1,5 +1,6 @@
 package medsolution.medsolutionmed
 
+import android.app.Activity
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NO_HISTORY
 import android.os.Bundle
@@ -15,6 +16,15 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login2)
         listeners()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+            intent.flags = FLAG_ACTIVITY_NO_HISTORY
+            startActivity(intent)
+        }
     }
 
     fun listeners() {
@@ -42,10 +52,9 @@ class LoginActivity : AppCompatActivity() {
                         }
                     })
             }
-            signUp.setOnClickListener {
-                //TODO
-            }
-
+        }
+        signUp.setOnClickListener {
+            startActivityForResult(Intent(this@LoginActivity, RegisterActivity::class.java), 1)
         }
     }
 
