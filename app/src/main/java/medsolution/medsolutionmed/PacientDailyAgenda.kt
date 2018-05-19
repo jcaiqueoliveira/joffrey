@@ -35,21 +35,25 @@ class PacientDailyAgenda : AppCompatActivity() {
         supportActionBar?.title = "Paciente"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        init {
-            idClient = it.id
-            imgLetter.letter = it.name
-            namePacient1.text = it.name
-            bed.text = it.bed
-            diagnostic.text = it.diagnost
-            gender.text = it.gender
-            date.text = it.date
+        init { pacient ->
+            idClient = pacient.id
+            imgLetter.letter = pacient.name
+            namePacient1.text = pacient.name
+            bed.text = pacient.bed
+            diagnostic.text = pacient.diagnost
+            gender.text = pacient.gender
+            date.text = pacient.date
             // toFeedASection()
             setupRv(options())
-        }
 
-        newTask.setOnClickListener {
-            startActivity(Intent(this@PacientDailyAgenda, NewTaskActivity::class.java))
-            //  finish()
+            historicSchedule.setOnClickListener { _ ->
+                startActivity(HistoryActivity.startActivity(this, pacient))
+            }
+
+            newTask.setOnClickListener {
+                startActivity(Intent(this@PacientDailyAgenda, NewTaskActivity::class.java))
+                //  finish()
+            }
         }
     }
 

@@ -113,12 +113,12 @@
         android:layout_height="440dp"
         android:layout_above="@+id/newTask"
         android:layout_margin="12dp"
-        android:padding="8dp"
         app:cardElevation="8dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:padding="8dp">
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/label5"
