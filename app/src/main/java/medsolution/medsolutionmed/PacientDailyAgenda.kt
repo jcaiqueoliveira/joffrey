@@ -38,8 +38,13 @@ class PacientDailyAgenda : AppCompatActivity() {
             diagnostic.text = it.diagnost
             gender.text = it.gender
             date.text = it.date
-            //toFeedASection()
+            // toFeedASection()
             setupRv(options())
+        }
+
+        newTask.setOnClickListener {
+            startActivity(Intent(this@PacientDailyAgenda, NewTaskActivity::class.java))
+          //  finish()
         }
     }
 

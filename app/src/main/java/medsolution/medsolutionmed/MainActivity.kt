@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_lista_pacientes)
         supportActionBar?.title = FirebaseUtils.userName
 
-        FirebaseUtils.profile.addListenerForSingleValueEvent(name())
+        //FirebaseUtils.profile.addListenerForSingleValueEvent(name())
 
         val options = FirebaseRecyclerOptions.Builder<Pacient1>()
             .setQuery(FirebaseUtils.query, Pacient1::class.java)
@@ -80,10 +80,22 @@ class MainActivity : AppCompatActivity() {
                 holder.itemView.namePacient.text = model.name
                 holder.itemView.leito.text = model.bed
                 holder.itemView.diagnostic.text = model.diagnost
+                FirebaseUtils.pacient_schedule.child(model.id).addValueEventListener(object :
+                    ValueEventListener {
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        val count = dataSnapshot.childrenCount.toInt()
+                        if (count > 0) {
+                            holder.itemView.status.setImageResource(R.drawable.ic_oval_red)
+                        } else {
+                            holder.itemView.status.setImageBitmap(null)
+                        }
+                    }
 
+                    override fun onCancelled(databaseError: DatabaseError) {}
+                })
                 if (position.rem(2) == 0) {
                     holder.itemView.image_paciente.shapeColor =
-                        holder.itemView.context.resources.getColor(R.color.colorPrimary)
+                        holder.itemView.context.resources.getColor(R.color.colorAccent)
                 } else {
                     holder.itemView.image_paciente.shapeColor =
                         holder.itemView.context.resources.getColor(android.R.color.black)
@@ -103,5 +115,8 @@ class MainActivity : AppCompatActivity() {
         pacientList.layoutManager = LinearLayoutManager(this)
         pacientList.setHasFixedSize(true)
         pacientList.adapter = adapter
+    }
+
+    fun badgeListener() {
     }
 }

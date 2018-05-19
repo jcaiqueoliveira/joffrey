@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity">
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/Theme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,10 +21,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/Theme.NoActionBar" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".NewTaskActivity"/>
-        <activity android:name=".PacientDailyAgenda"/>
+        <activity android:name=".NewTaskActivity" />
+        <activity android:name=".PacientDailyAgenda" />
     </application>
 
 </manifest>
