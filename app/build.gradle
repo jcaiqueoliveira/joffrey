@@ -37,6 +37,7 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:26.0.2'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'com.google.firebase:firebase-database:15.0.1'
+    implementation'com.github.ivbaranov:materiallettericon:0.2.3'
 }
 
 apply plugin: 'com.google.gms.google-services'
