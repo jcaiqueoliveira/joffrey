@@ -1,14 +1,17 @@
 package medsolution.medsolutionmed
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.TextInputEditText
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import kotlinx.android.synthetic.main.activity_task.*
+import medsolution.medsolutionmed.model.SchedulePacient
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -85,6 +88,26 @@ class TaskActivity : AppCompatActivity() {
         textview_date!!.setText(sdf.format(cal.getTime()))
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_task, menu)
+        val intent = Intent(this, TaskActivity::class.java)
+        //Salvar item no firebase -> schedule_pacient
+
+        //Action -> Procedimento
+        //ocurrenceType -> Tela anterior.
+        val key = FirebaseUtils.pacient.push().key
+        SchedulePacient().apply {
+            ocurrenceType = text_procedimento.toString()
+            idSchedule = key
+            time = spinner_turno.selectedItem.toString()
+            action = intent.getStringExtra("STRING_I_NEED")
+            FirebaseUtils.query_schedule.child(key).setValue(this)
+
+        }
+        return true
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
@@ -92,7 +115,9 @@ class TaskActivity : AppCompatActivity() {
                 finish()
                 return true
             }
-        }
+            }
         return super.onOptionsItemSelected(item)
+        }
+
     }
-}
+

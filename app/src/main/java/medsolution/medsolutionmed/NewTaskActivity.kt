@@ -22,6 +22,9 @@ class NewTaskActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "Nova Tarefa"
 
+
+
+
         val options = FirebaseRecyclerOptions.Builder<Task>()
             .setQuery(FirebaseUtils.query_task, Task::class.java)
             .build()
@@ -38,6 +41,7 @@ class NewTaskActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
 
     fun setupRv(options: FirebaseRecyclerOptions<Task>) {
 
@@ -56,12 +60,19 @@ class NewTaskActivity : AppCompatActivity() {
                 holder.itemView.task.text = model.name
                 holder.itemView.root3.setOnClickListener {
                     if (model.name.toLowerCase() == "medicamento") {
+                        val i = Intent(this@NewTaskActivity, TaskActivity::class.java)
+                        val strName: String? = null
+                        i.putExtra("STRING_I_NEED",model.name)
                         startActivity(
                             Intent(
                                 this@NewTaskActivity,
                                 TaskMedicationActivity::class.java
+
                             )
+
                         )
+
+
                         finish()
                     } else {
                         startActivity(
@@ -70,6 +81,9 @@ class NewTaskActivity : AppCompatActivity() {
                                 TaskActivity::class.java
                             )
                         )
+                        val i = Intent(this@NewTaskActivity, TaskMedicationActivity::class.java)
+                        val strName: String? = null
+                        i.putExtra("STRING_I_NEED", model.name)
                         finish()
                     }
                 }
