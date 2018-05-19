@@ -18,6 +18,12 @@ object FirebaseUtils {
         .reference
         .child("pacient_list")
 
-
     val query_task = FirebaseDatabase.getInstance().reference.child("\"tarefa\"")
+
+    val pacient_schedule = database.getReference("schedule_pacient")
+
+    val query_schedule = FirebaseDatabase.getInstance().reference.child("\"schedule_pacient\"")
+
+
+    val paciente_time_line = FirebaseDatabase.getInstance().reference.child("pacient_time_line")
 }

@@ -1,5 +1,6 @@
 package medsolution.medsolutionmed
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -35,6 +36,8 @@ class MainActivity : AppCompatActivity() {
 //                bed = "Leito $i"
 //                diagnost = "febre"
 //                id = key
+//                date = "10/11/2017"
+//                gender = if (i.rem(2) == 0) "Feminino" else "Masculino"
 //                FirebaseUtils.pacient.child(key).setValue(this)
 //            }
 //        }
@@ -86,8 +89,12 @@ class MainActivity : AppCompatActivity() {
                         holder.itemView.context.resources.getColor(android.R.color.black)
                 }
 
-                holder.itemView.setOnClickListener {
+                holder.itemView.root1.setOnClickListener {
 
+                    val intent = PacientDailyAgenda.startActivity(this@MainActivity, model)
+
+                    intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
+                    startActivity(intent)
                 }
             }
         }

@@ -1,13 +1,19 @@
 package medsolution.medsolutionmed.model;
 
-public class Pacient1 {
+import java.io.Serializable;
 
-    public Pacient1(){}
+public class Pacient1 implements Serializable {
+
+    public Pacient1() {
+    }
 
     private String name;
     private String bed;
     private String diagnost;
     private String id;
+    private String gender;
+    private String date;
+
 
     public String getName() {
         return name;
@@ -39,5 +45,21 @@ public class Pacient1 {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }
