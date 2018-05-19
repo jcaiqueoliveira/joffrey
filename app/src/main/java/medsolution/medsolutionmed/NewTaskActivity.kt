@@ -1,5 +1,6 @@
 package medsolution.medsolutionmed
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -11,9 +12,20 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import kotlinx.android.synthetic.main.activity_new_task.*
 import kotlinx.android.synthetic.main.item_head_new_task.view.*
+import medsolution.medsolutionmed.model.Pacient1
 import medsolution.medsolutionmed.model.Task
 
 class NewTaskActivity : AppCompatActivity() {
+
+    lateinit var idClient: String
+
+    companion object {
+        val key = "NEW_HISTORY"
+        fun startActivity(context: Context, pacient: Pacient1): Intent {
+            val i = Intent(context, NewTaskActivity::class.java)
+            return i.putExtra(key, pacient)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,13 +34,13 @@ class NewTaskActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "Nova Tarefa"
 
-
-
-
         val options = FirebaseRecyclerOptions.Builder<Task>()
             .setQuery(FirebaseUtils.query_task, Task::class.java)
             .build()
         setupRv(options)
+        init {
+            idClient = it.id
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -41,7 +53,6 @@ class NewTaskActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-
 
     fun setupRv(options: FirebaseRecyclerOptions<Task>) {
 
@@ -60,30 +71,16 @@ class NewTaskActivity : AppCompatActivity() {
                 holder.itemView.task.text = model.name
                 holder.itemView.root3.setOnClickListener {
                     if (model.name.toLowerCase() == "medicamento") {
-                        val i = Intent(this@NewTaskActivity, TaskActivity::class.java)
-                        val strName: String? = null
-                        i.putExtra("STRING_I_NEED",model.name)
-                        startActivity(
-                            Intent(
-                                this@NewTaskActivity,
-                                TaskMedicationActivity::class.java
-
-                            )
-
-                        )
-
-
+                        val i = Intent(this@NewTaskActivity, TaskMedicationActivity::class.java)
+                        i.putExtra("STRING_I_NEED", model.name)
+                        i.putExtra("user_id", idClient)
+                        startActivity(i)
                         finish()
                     } else {
-                        startActivity(
-                            Intent(
-                                this@NewTaskActivity,
-                                TaskActivity::class.java
-                            )
-                        )
-                        val i = Intent(this@NewTaskActivity, TaskMedicationActivity::class.java)
-                        val strName: String? = null
+                        val i = Intent(this@NewTaskActivity, TaskActivity::class.java)
                         i.putExtra("STRING_I_NEED", model.name)
+                        i.putExtra("user_id", idClient)
+                        startActivity(i)
                         finish()
                     }
                 }
@@ -94,5 +91,10 @@ class NewTaskActivity : AppCompatActivity() {
         listTask.layoutManager = LinearLayoutManager(this)
         listTask.setHasFixedSize(true)
         listTask.adapter = adapter
+    }
+
+    fun init(func: (pacient: Pacient1) -> Unit) {
+        val pacient = intent.getSerializableExtra(NewTaskActivity.key) as Pacient1
+        func.invoke(pacient)
     }
 }

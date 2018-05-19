@@ -1,7 +1,6 @@
 package medsolution.medsolutionmed
 
 import android.app.DatePickerDialog
-import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.TextInputEditText
 import android.support.v7.app.AppCompatActivity
@@ -9,7 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ArrayAdapter
-import android.widget.DatePicker
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_task.*
 import medsolution.medsolutionmed.model.SchedulePacient
 import java.text.SimpleDateFormat
@@ -19,6 +18,9 @@ class TaskActivity : AppCompatActivity() {
 
     var cal = Calendar.getInstance()
     var textview_date: TextInputEditText? = null
+
+    lateinit var idClient: String
+    lateinit var ocurrenceType1: String
 //    var spinner_turno: AppCompatSpinner?=null
 //    var spinner_SetorResponsavel: AppCompatSpinner?=null
 
@@ -47,17 +49,13 @@ class TaskActivity : AppCompatActivity() {
         )
 
         // create an OnDateSetListener
-        val dateSetListener = object : DatePickerDialog.OnDateSetListener {
-            override fun onDateSet(
-                view: DatePicker, year: Int, monthOfYear: Int,
-                dayOfMonth: Int
-            ) {
+        val dateSetListener =
+            DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
                 cal.set(Calendar.YEAR, year)
                 cal.set(Calendar.MONTH, monthOfYear)
                 cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
                 updateDateInView()
             }
-        }
 
         if (textview_date!!.isFocusable) {
 
@@ -80,6 +78,7 @@ class TaskActivity : AppCompatActivity() {
         this.spinner_turno!!.adapter = adapterTurno
 
         this.spinner_setor_responsavel!!.adapter = adapterSetorResponsavel
+        init()
     }
 
     private fun updateDateInView() {
@@ -91,20 +90,11 @@ class TaskActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_task, menu)
-        val intent = Intent(this, TaskActivity::class.java)
         //Salvar item no firebase -> schedule_pacient
 
         //Action -> Procedimento
         //ocurrenceType -> Tela anterior.
-        val key = FirebaseUtils.pacient.push().key
-        SchedulePacient().apply {
-            ocurrenceType = text_procedimento.toString()
-            idSchedule = key
-            time = spinner_turno.selectedItem.toString()
-            action = intent.getStringExtra("STRING_I_NEED")
-            FirebaseUtils.query_schedule.child(key).setValue(this)
 
-        }
         return true
     }
 
@@ -115,9 +105,29 @@ class TaskActivity : AppCompatActivity() {
                 finish()
                 return true
             }
-            }
-        return super.onOptionsItemSelected(item)
-        }
 
+            R.id.menu_salvar -> {
+                val key = FirebaseUtils.pacient.push().key
+                SchedulePacient().apply {
+                    ocurrenceType = ocurrenceType1
+                    idSchedule = key
+                    time = spinner_turno.selectedItem.toString()
+                    action = text_procedimento.text.toString()
+                    FirebaseUtils.query_schedule.child(idClient).child(key).setValue(this)
+                    Toast.makeText(this@TaskActivity, "Adicionado", Toast.LENGTH_LONG)
+                        .show()
+                    finish()
+                }
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
+
+    fun init() {
+        ocurrenceType1 = intent.extras.getString("STRING_I_NEED")
+        idClient = intent.extras.getString("user_id")
+    }
+}
+
+
 

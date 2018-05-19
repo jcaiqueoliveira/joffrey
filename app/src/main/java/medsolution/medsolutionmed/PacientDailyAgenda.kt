@@ -51,8 +51,9 @@ class PacientDailyAgenda : AppCompatActivity() {
             }
 
             newTask.setOnClickListener {
-                startActivity(Intent(this@PacientDailyAgenda, NewTaskActivity::class.java))
-                //  finish()
+                val intent = NewTaskActivity.startActivity(this, pacient)
+                intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
+                startActivity(intent)
             }
         }
     }
