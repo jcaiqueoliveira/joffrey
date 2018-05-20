@@ -10,11 +10,16 @@ import android.view.MenuItem
 import android.view.ViewGroup
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_pacient_daily_agenda.*
 import kotlinx.android.synthetic.main.item_list_schedule.view.*
+import medsolution.gone
 import medsolution.medsolutionmed.model.Pacient1
 import medsolution.medsolutionmed.model.SchedulePacient
+import medsolution.visible
 
 class PacientDailyAgenda : AppCompatActivity() {
 
@@ -46,9 +51,8 @@ class PacientDailyAgenda : AppCompatActivity() {
             // toFeedASection()
             setupRv(options())
 
-            historicSchedule.setOnClickListener { _ ->
-                startActivity(HistoryActivity.startActivity(this, pacient))
-            }
+            historyListener(pacient)
+            listenerSchedule(pacient)
 
             newTask.setOnClickListener {
                 val intent = NewTaskActivity.startActivity(this, pacient)
@@ -131,5 +135,53 @@ class PacientDailyAgenda : AppCompatActivity() {
 
         FirebaseUtils.paciente_time_line.child(idClient).child(schedule.idSchedule)
             .setValue(schedule)
+    }
+
+    fun historyListener(paciente: Pacient1) {
+        FirebaseUtils.paciente_time_line.child(paciente.id).addValueEventListener(object :
+            ValueEventListener {
+            override fun onCancelled(p0: DatabaseError?) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val count = dataSnapshot.childrenCount.toInt()
+                if (count > 0) {
+                    historicSchedule.isEnabled = true
+                    historicSchedule.text = "Histórico da agenda"
+                    historicSchedule.setOnClickListener { _ ->
+                        startActivity(
+                            HistoryActivity.startActivity(
+                                this@PacientDailyAgenda,
+                                paciente
+                            )
+                        )
+                    }
+                } else {
+                    historicSchedule.isEnabled = false
+                    historicSchedule.text = "Paciente sem histórico"
+                }
+            }
+        })
+    }
+
+    fun listenerSchedule(pacient: Pacient1) {
+        FirebaseUtils.pacient_schedule.child(pacient.id).addValueEventListener(object :
+            ValueEventListener {
+            override fun onCancelled(p0: DatabaseError?) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val count = dataSnapshot.childrenCount.toInt()
+                if (count > 0) {
+                    emptyState.gone()
+                    schedule.visible()
+                } else {
+                    emptyState.visible()
+                    schedule.gone()
+                }
+            }
+        })
     }
 }

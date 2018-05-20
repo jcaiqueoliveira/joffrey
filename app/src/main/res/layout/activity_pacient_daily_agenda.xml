@@ -110,10 +110,36 @@
     <android.support.v7.widget.CardView
         android:id="@+id/root"
         android:layout_width="match_parent"
-        android:layout_height="440dp"
+        android:layout_height="match_parent"
         android:layout_above="@+id/newTask"
+        android:layout_below="@+id/date"
         android:layout_margin="12dp"
         app:cardElevation="8dp">
+
+        <LinearLayout
+            android:id="@+id/emptyState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@drawable/ic_oval"
+                android:padding="16dp"
+                app:srcCompat="@drawable/ic_format_list_bulleted_black_24dp" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Nenhuma tarefa agendada para este paciente"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -125,7 +151,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="26sp"
                 android:layout_marginBottom="12dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:gravity="center"
                 android:text="AGENDA DIÁRIA"
                 android:textStyle="bold" />
@@ -145,7 +171,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="8dp"
                 android:gravity="center"
                 android:text="Histórico da agenda" />
         </RelativeLayout>
@@ -156,7 +182,7 @@
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/newTask"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
