@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuItem
 import android.view.ViewGroup
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
@@ -49,6 +51,30 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun onCancelled(databaseError: DatabaseError) {}
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu)
+        //Salvar item no firebase -> schedule_pacient
+
+        //Action -> Procedimento
+        //ocurrenceType -> Tela anterior.
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                // Respond to the action bar's Up/Home button
+                finish()
+                return true
+            }
+            R.id.menu_terms -> {
+                startActivity(Intent(this, Terms::class.java))
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     fun setupRv(options: FirebaseRecyclerOptions<Pacient1>) {

@@ -19,6 +19,9 @@ class RegisterActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "Cadastro"
         listeners()
+        terms.setOnClickListener {
+            startActivity(Intent(this, Terms::class.java))
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

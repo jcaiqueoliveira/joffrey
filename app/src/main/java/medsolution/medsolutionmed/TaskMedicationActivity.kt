@@ -37,6 +37,7 @@ class TaskMedicationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_task_medicamento)
+        setSupportActionBar(toolbar_task_medicamento)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "Nova Tarefa"
 

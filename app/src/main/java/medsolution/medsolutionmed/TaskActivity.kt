@@ -107,6 +107,11 @@ class TaskActivity : AppCompatActivity() {
             }
 
             R.id.menu_salvar -> {
+                if (text_procedimento.text.toString().isNullOrBlank()) {
+                    Toast.makeText(this, "Preencha o procedimento corretamente", Toast.LENGTH_LONG)
+                        .show()
+                }
+
                 val key = FirebaseUtils.pacient.push().key
                 SchedulePacient().apply {
                     ocurrenceType = ocurrenceType1

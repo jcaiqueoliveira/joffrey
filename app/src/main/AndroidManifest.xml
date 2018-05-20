@@ -25,7 +25,8 @@
         <activity android:name=".PacientDailyAgenda" />
         <activity android:name=".TaskActivity" />
         <activity android:name=".TaskMedicationActivity" />
-        <activity android:name=".HistoryActivity"/>
+        <activity android:name=".HistoryActivity" />
+        <activity android:name=".Terms"></activity>
     </application>
 
 </manifest>

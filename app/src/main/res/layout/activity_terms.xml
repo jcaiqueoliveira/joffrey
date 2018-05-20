@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Terms">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        app:title="Termos de uso"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="@android:color/darker_gray" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:lineSpacingExtra="1dp"
+            android:text="TERMO DE COMPROMISSO, SIGILO E CONFIDENCIALIDADE
+
+           Pelo presente instrumento e na melhor forma de direito, de um lado XXX (NOME), NACIONALIDADE), (ESTADO CIVIL), lotado no Departamento  XXXXX, da Empresa XXXXXX,  e de outro (NOME), (NACIONALIDADE), (ESTADO CIVIL) ou nome e qualificação de empresa, residente e domiciliado na (ENDEREÇO)
+
+               Considerando que para bom e fiel desempenho das atividades da EMPRESA XXXXX faz-se necessária a disponibilização de informações técnicas e confidenciais, incluídas as de projeto, especificação, funcionamento, organização e desempenho da referida empresa.
+
+      CLÁUSULA PRIMEIRA – DO OBJETO
+
+                    O objeto do presente termo é a proteção das INFORMAÇÕES CONFIDENCIAIS disponibilizadas pela EMPRESA, em razão da relação de emprego desenvolvida pelas partes.
+
+                   O objeto do presente termo é a proteção das INFORMAÇÕES CONFIDENCIAIS disponibilizadas pela EMPRESA, em razão da relação de emprego desenvolvida pelas partes.
+
+        CLÁUSULA SEGUNDA – DAS DEFINIÇÕES
+
+Todas as informações técnicas obtidas através da relação de emprego com a EMPRESA e relacionadas a projeto, especificação, funcionamento, organização ou desempenho da referida empresa serão tidas como CONFIDENCIAIS E SIGILOSAS.
+
+PARÁGRAFO ÚNICO: Serão consideradas para efeito deste termo toda e qualquer informação, patenteada ou não, de natureza técnica, operacional, comercial, jurídica, Know-how, invenções, processos, fórmulas e designs, patenteáveis ou não, sistemas de produção, logística e layouts, planos de negócios (business plans), métodos de contabilidade, técnicas e experiências acumuladas, documentos, contratos, papéis, estudos, pareceres e pesquisas a que o funcionário tenha acesso:
+
+         a) por qualquer meio físico (g.documentos expressos, manuscritos, fac-símile, mensagens eletrônicas (e-    mail), fotografias etc;
+
+         b) por qualquer forma registrada em mídia eletrônica (fitas, cd´s, dvd´s, disquetes etc);
+
+         c) oralmente.
+
+      CLÁUSULA TERCEIRA – DA RESPONSABILIDADE
+
+          O empregado compromete-se a manter sigilo não utilizando tais informações confidenciais em proveito próprio ou alheio.
+
+PARÁGRAFO PRIMEIRO: As informações confidenciais confiadas aos empregados somente poderão ser abertas a terceiro mediante consentimento prévio e por escrito da empresa, ou em caso de determinação judicial, hipótese em que o empregado deverá informar de imediato, por escrito, à empresa para que esta procure obstar e afastar a obrigação de revelar as informações.
+
+            CLÁUSULA QUARTA – DAS INFORMAÇÕES NÃO CONFIDENCIAIS
+
+
+Não configuram informações confidenciais aquelas:
+
+a) já disponíveis ao público em geral sem culpa do funcionário;
+
+b) que já eram do conhecimento do funcionário antes de sua do ingresso na empresa e que não foram adquiridas direta ou indiretamente da empresa;
+
+c) que não são mais tratadas como confidenciais pela empresa.
+
+     CLÁUSULA QUINTA – DA GUARDA DAS INFORMAÇÕES
+
+Todas as informações de confidencialidade e sigilo previstas neste termo terão validade durante toda a vigência deste instrumento, enquanto perdurar a relação de trabalho e, ainda, por um período mínimo de 01 (um) ano do rompimento do vínculo do funcionário com a empresa.
+
+
+CLÁUSULA SEXTA – DAS OBRIGAÇÕES
+
+Deverá o funcionário:
+
+I) usar tais informações apenas com o propósito de bem e fiel cumprir os fins da empresa;
+
+II) manter o sigilo relativo ás informações confidenciais e revelá-las apenas aos empregados que tiverem necessidade de ter conhecimento sobre elas;
+
+III) proteger as informações confidenciais que lhe foram divulgadas, usando o mesmo grau de cuidado utilizado para proteger suas próprias informações confidenciais;
+
+IV) manter procedimentos administrativos adequados à prevenção de extravio ou perda de quaisquer documentos ou informações confidenciais, devendo comunicar à empresa, imediatamente, a ocorrência de incidentes desta natureza, o que não excluirá sua responsabilidade.
+
+PARÁGRAFO PRIMEIRO: O funcionário fica desde já proibido de produzir cópias ou backup, por qualquer meio ou forma, de qualquer dos documentos a ele fornecidos ou documentos que tenham chegado ao seu conhecimento em virtude da relação de emprego.
+
+PARÁGRAFO SEGUNDO: O funcionário deverá devolver, íntegros e integralmente, todos os documentos a ele fornecidos, inclusive as cópias porventura necessárias, na data estipulada pela empresa para entrega, ou quando não for mais necessária a manutenção das informações confidenciais, comprometendo-se a não reter quaisquer reproduções, cópias ou segundas vias, sob pena de incorrer nas responsabilidades previstas neste instrumento.
+
+PARÁGRAFO TERCEIRO: O funcionário deverá destruir todo e qualquer documento por ele produzido que contenha informações confidenciais da empresa, quando não mais for necessária a manutenção dessas informações confidenciais, comprometendo-se a não reter quaisquer reproduções, sob pena de incorrer nas responsabilidades previstas neste instrumento.
+
+                  CLÁUSULA SÉTIMA –  DAS DISPOSIÇÕES ESPECIAIS
+
+Ao assinar o presente instrumento, o funcionário manifesta sua concordância no seguinte sentido:
+
+I) todas as condições, termos e obrigações ora constituídas serão regidas pelo presente Termo, bem como pela legislação e regulamentação brasileiras pertinentes;
+
+II) o presente termo só poderá ser alterado mediante a celebração de novo termo, posterior e aditivo;
+
+III) as alterações do número, natureza e quantidade das informações confidenciais disponibilizadas pela empresa não descaracterizarão ou reduzirão o compromisso ou as obrigações pactuadas neste Termo de Confidencialidade e Sigilo, que permanecerá válido e com todos os seus efeitos legais em qualquer das situações tipificadas neste instrumento;
+
+IV) o acréscimo, complementação, substituição ou esclarecimento de qualquer das informações confidenciais disponibilizadas para o funcionário, em razão do presente objetivo, serão incorporadas a este Termo, passando a fazer dele parte integrante, para todos os fins e efeitos, recebendo também a mesma proteção descrita para as informações iniciais disponibilizadas, não sendo necessário, nessas hipóteses, a assinatura ou formalização de Termo aditivo.
+
+ CLÁUSULA OITAVA – DA VALIDADE
+
+Este termo tornar-se-á válido a partir da data de sua efetiva assinatura pelas partes.
+
+Parágrafo Único: As disposições deste instrumento devem, contudo, ser aplicadas retroativamente a qualquer informação confidencial que possa já ter sido divulgada, antes da data de sua assinatura.
+
+  CLÁUSULA NONA – DAS PENALIDADES
+
+A não-observância de quaisquer das disposições de confidencialidade estabelecidas neste instrumento, sujeitará ao funcionário infrator, como também ao agente causador ou facilitador, por ação ou omissão de qualquer daqueles relacionados neste Termo, ao pagamento, ou recomposição, de todas as perdas e danos comprovadas pela empresa, bem como as de responsabilidade civil e criminal respectivas, as quais serão apuradas em regular processo judicial ou administrativo." />
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>
