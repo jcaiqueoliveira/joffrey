@@ -124,10 +124,17 @@ class PacientDailyAgenda : AppCompatActivity() {
                 holder.itemView.ocurrenceType.text = model.ocurrenceType
                 holder.itemView.action.text = model.action
                 holder.itemView.timeValue.text = model.time
-                holder.itemView.rootL.setOnClickListener {
-                    FirebaseDatabase.getInstance().reference.child("schedule_pacient")
-                        .child(idClient).child(model.idSchedule).setValue(null)
-                    moveScheduleToPacientHistory(model)
+
+                if(!model.concluida) {
+                    holder.itemView.radio.isChecked = false
+                    holder.itemView.rootL.setOnClickListener {
+                        model.concluida = true
+                        FirebaseDatabase.getInstance().reference.child("schedule_pacient")
+                            .child(idClient).child(model.idSchedule).setValue(model)
+                        moveScheduleToPacientHistory(model)
+                    }
+                }else{
+                    holder.itemView.radio.isChecked = true
                 }
             }
         }

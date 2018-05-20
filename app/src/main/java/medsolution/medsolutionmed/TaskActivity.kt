@@ -118,6 +118,7 @@ class TaskActivity : AppCompatActivity() {
                     idSchedule = key
                     time = spinner_turno.selectedItem.toString()
                     action = text_procedimento.text.toString()
+                    concluida = false
                     FirebaseUtils.query_schedule.child(idClient).child(key).setValue(this)
                     Toast.makeText(this@TaskActivity, "Adicionado", Toast.LENGTH_LONG)
                         .show()

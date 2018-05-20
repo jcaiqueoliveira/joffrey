@@ -127,6 +127,7 @@ class TaskMedicationActivity : AppCompatActivity() {
                     idSchedule = key
                     time = text_horario.text.toString()
                     action = action1.editText?.text.toString()
+                    concluida = false
                     FirebaseUtils.query_schedule.child(idClient).child(key).setValue(this)
                     Toast.makeText(this@TaskMedicationActivity, "Adicionado", Toast.LENGTH_LONG)
                         .show()

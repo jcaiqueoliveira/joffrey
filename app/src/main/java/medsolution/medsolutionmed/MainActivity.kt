@@ -106,7 +106,7 @@ class MainActivity : AppCompatActivity() {
                 holder.itemView.leito.text = model.bed
                 holder.itemView.diagnostic.text = model.diagnost
 
-                FirebaseUtils.pacient_schedule.child(model.id).addValueEventListener(object :
+                FirebaseUtils.pacient_schedule.child(model.id).addListenerForSingleValueEvent(object :
                     ValueEventListener {
                     override fun onDataChange(dataSnapshot: DataSnapshot) {
                         val count = dataSnapshot.childrenCount.toInt()

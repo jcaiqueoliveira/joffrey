@@ -5,7 +5,7 @@ public class SchedulePacient {
     private String ocurrenceType;
     private String action;
     private String idSchedule;
-
+    private Boolean concluida;
     public String getTime() {
         return time;
     }
@@ -36,5 +36,13 @@ public class SchedulePacient {
 
     public void setIdSchedule(String idSchedule) {
         this.idSchedule = idSchedule;
+    }
+
+    public Boolean getConcluida() {
+        return concluida;
+    }
+
+    public void setConcluida(Boolean concluida) {
+        this.concluida = concluida;
     }
 }
