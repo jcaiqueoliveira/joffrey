@@ -26,7 +26,8 @@
         <activity android:name=".TaskActivity" />
         <activity android:name=".TaskMedicationActivity" />
         <activity android:name=".HistoryActivity" />
-        <activity android:name=".Terms"></activity>
+        <activity android:name=".Terms" />
+        <activity android:name=".ChatActivity"></activity>
     </application>
 
 </manifest>

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.MenuItem
 import android.view.ViewGroup
 import com.firebase.ui.database.FirebaseRecyclerAdapter
@@ -24,6 +25,7 @@ import medsolution.visible
 class PacientDailyAgenda : AppCompatActivity() {
 
     lateinit var idClient: String
+    lateinit var paciente23: Pacient1
 
     companion object {
         val key = "PACIENT"
@@ -42,6 +44,7 @@ class PacientDailyAgenda : AppCompatActivity() {
 
         init { pacient ->
             idClient = pacient.id
+            paciente23 = pacient
             imgLetter.letter = pacient.name
             namePacient1.text = pacient.name
             bed.text = pacient.bed
@@ -65,9 +68,13 @@ class PacientDailyAgenda : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
-                // Respond to the action bar's Up/Home button
                 finish()
                 return true
+            }
+            R.id.menu_chat -> {
+                val intent = Intent(this@PacientDailyAgenda, ChatActivity::class.java)
+                intent.putExtra("data_pacient", paciente23)
+                startActivity(intent)
             }
         }
         return super.onOptionsItemSelected(item)
@@ -183,5 +190,15 @@ class PacientDailyAgenda : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_pacient, menu)
+        //Salvar item no firebase -> schedule_pacient
+
+        //Action -> Procedimento
+        //ocurrenceType -> Tela anterior.
+        return true
     }
 }

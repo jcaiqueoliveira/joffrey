@@ -105,6 +105,7 @@ class MainActivity : AppCompatActivity() {
                 holder.itemView.namePacient.text = model.name
                 holder.itemView.leito.text = model.bed
                 holder.itemView.diagnostic.text = model.diagnost
+
                 FirebaseUtils.pacient_schedule.child(model.id).addValueEventListener(object :
                     ValueEventListener {
                     override fun onDataChange(dataSnapshot: DataSnapshot) {

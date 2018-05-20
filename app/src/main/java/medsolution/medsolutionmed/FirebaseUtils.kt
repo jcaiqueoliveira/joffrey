@@ -26,4 +26,5 @@ object FirebaseUtils {
 
     val paciente_time_line = FirebaseDatabase.getInstance().reference.child("pacient_time_line")
 
+    val firebase_chat = FirebaseDatabase.getInstance().reference.child("chat")
 }
